@@ -36,4 +36,5 @@ EXPOSE 8050
 
 # Run with Gunicorn in production
 # app:server → module "app.py", WSGI callable "server"
-CMD ["gunicorn", "-b", "0.0.0.0:8050", "app:server"]
+CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "main:app", "-b", "0.0.0.0:8050", "-w", "2"]
+
